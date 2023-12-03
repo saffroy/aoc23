@@ -3,29 +3,29 @@
 import re
 
 def main():
-    with open('input') as f:
+    with open('input', encoding='ascii') as f:
         lines = f.readlines()
 
     single = re.compile('^[^0-9]*([0-9])[^0-9]*$')
     double = re.compile('^[^0-9]*([0-9]).*([0-9])[^0-9]*$')
 
-    sum = 0
+    sum_calib = 0
     junk = []
     for line in lines:
         m = single.match(line)
         if m:
             (d,) = m.groups()
-            sum += int(d) * 10 + int(d)
+            sum_calib += int(d) * 10 + int(d)
             continue
         m = double.match(line)
         if m:
             (d1,d2) = m.groups()
-            sum += int(d1) * 10 + int(d2)
+            sum_calib += int(d1) * 10 + int(d2)
             continue
         junk.append(line)
 
     print('junk lines:', len(junk))
-    print('sum:', sum)
+    print('sum_calib:', sum_calib)
 
     assert len(junk) == 0
 

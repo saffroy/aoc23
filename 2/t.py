@@ -78,7 +78,7 @@ def test():
     assert test_sumpow == sum_pow(games)
 
 def main():
-    with open('input') as f:
+    with open('input', encoding='ascii') as f:
         lines = f.readlines()
     games = parse(lines)
 

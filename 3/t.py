@@ -1,4 +1,5 @@
 import re
+import os
 
 test_data = '''467..114..
 ...*......
@@ -24,7 +25,7 @@ def rectangle(x0, x1, y0, y1):
         yield (x1, y)
 
 def debug(*posarg):
-    if False:
+    if os.environ.get('INSIDE_EMACS'):
         print(*posarg)
 
 def parse(lines):
@@ -49,7 +50,7 @@ def parse(lines):
             row = grid[y][x:]
             debug(row)
 
-            m = re.search('[^\d]*(\d+)', row)
+            m = re.search(r'[^\d]*(\d+)', row)
             if not m:
                 # next line
                 break
@@ -73,7 +74,7 @@ def test():
     assert sum_parts == test_result
 
 def main():
-    with open('input') as f:
+    with open('input', encoding='ascii') as f:
         lines = list(map(str.strip, f.readlines()))
     sum_parts = parse(lines)
     print(sum_parts)

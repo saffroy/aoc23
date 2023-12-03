@@ -38,7 +38,7 @@ def parse(lines):
     # re.compile('(orez|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin|0|1|2|3|4|5|6|7|8|9)')
     tail = re.compile(f'({"|".join(digits_map_rev.keys())})')
 
-    sum = 0
+    sum_calib = 0
     coords = []
     junk = []
     for line in lines:
@@ -55,11 +55,11 @@ def parse(lines):
         (d2,) = m.groups()
 
         coord = digits_map[d1] * 10 + digits_map_rev[d2]
-        sum += coord
+        sum_calib += coord
         coords.append(coord)
 
     print('junk lines:', len(junk))
-    print('sum:', sum)
+    print('sum_calib:', sum_calib)
 
     assert len(junk) == 0
     return coords
@@ -68,7 +68,7 @@ def test():
     assert test_result == parse(test_data.splitlines())
 
 def main():
-    with open('input') as f:
+    with open('input', encoding='ascii') as f:
         lines = f.readlines()
     parse(lines)
 
