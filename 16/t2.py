@@ -30,9 +30,7 @@ def dir2vec(direction):
         case Direction.SOUTHWARD: return (0, 1)
         case Direction.EASTWARD: return (1, 0)
         case Direction.WESTWARD: return (-1, 0)
-    # workaround for https://github.com/pylint-dev/pylint/issues/5288
     assert False, direction
-    return (0, 0)
 
 def bounce(content, direction):
     match content:
@@ -62,9 +60,7 @@ def bounce(content, direction):
                     return [Direction.EASTWARD, Direction.WESTWARD]
                 case Direction.EASTWARD|Direction.WESTWARD:
                     return [direction]
-    # workaround for https://github.com/pylint-dev/pylint/issues/5288
     assert False, (content, direction)
-    return []
 
 def show_active(grid, xmax, ymax):
     for y in range(ymax):

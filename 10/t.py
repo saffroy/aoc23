@@ -20,7 +20,6 @@ def connects_to(grid, pos):
         case 'F': return [(x+1, y), (x, y+1)]
         case 'S': return [(x, y-1), (x-1, y), (x+1, y), (x, y+1)]
         case _: assert False, (tile, pos)
-    return [] # workaround for https://github.com/pylint-dev/pylint/issues/5288
 
 def parse(lines):
     # parse lines into grid, w/ padding
